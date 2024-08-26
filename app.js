@@ -11,9 +11,10 @@ function asignarTextoElemento(elemento, texto){
 }
 
 function encriptar(){
-    validar();
+    separar();
 }
 function separar(){
+    validar();
     if(textoAEncriptar!=" "){
         return;
     }
