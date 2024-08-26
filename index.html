@@ -6,8 +6,33 @@
     <title>Encriptador de texto</title>
 </head>
 <body>
-    <header></header>
-    <main></main>
+    <header>
+        <img src="./assets/Logo.png" alt="Alura logo" srcset="">
+    </header>
+    <main>
+        <section class="content">
+            <h1 class="content__title">
+                Ingrese el texto aqui
+            </h1>
+            <section class="content__results">
+                <div class="content__results__content">
+                    <textarea name="" id="" rows="10"></textarea>
+                    <img class="content__results__image" src="./assets/Muñeco.png" alt="A person with a magnifier seeking for">
+                    <h2 class="content__results__subtitle">Ningún mensaje fue encontrado</h2>
+                    <h3 class="content_results___text">Ingresa el texto que desees encriptar o desencriptar.</h3>
+                </div>
+                <button class="results__button" id="encriptar" style="display: none;">Copiar</button>
+            </section>
+            <div class="content__input">
+                <input type="text" name="text-user" id="userValue">
+            </div>
+            <div class="content__buttons">
+                <h2 class="content__buttons__text">Solo letras minúsculas y sin acentos</h2>
+                <button onclick="encriptar();" class="content__button" id="encriptar">Encriptar</button>
+                <button onclick="desencriptar();" class="content__button" id="desencriptar">Desencriptar</button>
+            </div>
+        </section>
+    </main>
     <footer></footer>
 </body>
 </html>
