@@ -1,0 +1,168 @@
+*,
+html {
+  font-family: "Arial", sans-serif;
+  color: #0b3870;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f3f5fc;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  padding: 20px;
+}
+
+.main-content {
+  height: 100%;
+  margin: 20px;
+}
+
+.main-content__container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 15px;
+}
+
+.input-section {
+  width: 70%;
+  height: 100%;
+  padding-left: 10%;
+  padding-right: 5%;
+}
+
+.input-section__title {
+  height: 80%;
+}
+
+.input-section__actions {
+  height: 15%;
+}
+
+.input-section__subtitle {
+  height: 5%;
+  padding-bottom: 0;
+}
+
+.input-section__textarea {
+  width: 100%;
+  height: 100%;
+  margin-top: 10%;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #0b3870;
+  background-color: transparent;
+  resize: none;
+}
+
+.input-section__textarea::placeholder {
+  color: #0b3870;
+  font-family: "Arial", sans-serif;
+}
+
+.info-section {
+  width: 30%;
+  height: 100%;
+  border-radius: 25px;
+  background-color: white;
+}
+
+.message {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.message__content {
+  text-align: center;
+}
+
+.history {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+
+}
+
+.history__title {
+  height: 85%;
+}
+
+.history__actions {
+  height: 15%;
+}
+
+.history__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.button-container > button {
+  width: 100%;
+  border-radius: 20px;
+  background-color: #0b3870;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-content__container {
+    flex-direction: column;
+  }
+
+  .input-section,
+  .info-section {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .input-section__title {
+    height: 70%;
+  }
+
+  .input-section__actions {
+    height: 20%;
+  }
+
+  .input-section__subtitle {
+    height: 10%;
+    padding: 10px;
+    padding-bottom: 0;
+  }
+
+  .history__title {
+    height: 80%;
+  }
+
+  .history__actions {
+    height: 20%;
+  }
+}

@@ -1,13 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encriptador de texto</title>
-</head>
-<body>
-    <header></header>
-    <main></main>
-    <footer></footer>
-</body>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <img src="./assets/images/Logo.png" alt="Alura logo" />
+    </header>
+    <main class="main-content">
+      <div class="main-content__container">
+        <section class="input-section">
+          <div class="input-section__title">
+            <textarea
+              type="text"
+              name="userValue"
+              id="userValue"
+              class="input-section__textarea"
+              placeholder="Ingrese el texto aquí"
+            ></textarea>
+          </div>
+          <div class="input-section__subtitle">
+            <small>Solo letras minúsculas y sin acentos</small>
+          </div>
+          <div class="input-section__actions">
+            <div class="button-container">
+              <button onclick="encriptar();" id="encriptar">Encriptar</button>
+              <button onclick="desencriptar();" id="desencriptar">
+                Desencriptar
+              </button>
+            </div>
+          </div>
+        </section>
+        <article class="info-section" id="message">
+          <div class="message">
+            <div class="message__content">
+              <img
+                src="./assets/images/Muñeco.png"
+                alt="A person with a magnifier seeking for"
+              />
+              <h2>Ningún mensaje fue encontrado</h2>
+              <span>
+                Ingresa el texto que desees encriptar o desencriptar.
+              </span>
+            </div>
+          </div>
+        </article>
+        <article class="info-section" id="history" hidden>
+          <div class="history">
+            <div class="history__title">
+              <ul class="history__list" id="listaContenedor"></ul>
+            </div>
+            <div class="history__actions">
+              <div class="button-container" id="contendorBotonCopiar"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+    <script src="app.js"></script>
+  </body>
 </html>
