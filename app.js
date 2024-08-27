@@ -44,7 +44,7 @@ function crearBotonCopiar(index) {
     const boton = document.createElement('button');
 
     contendorBotonCopiar.innerHTML = '';
-    boton.textContent = `Copiar índice ${index}`;
+    boton.textContent = `Copiar`;
     boton.onclick = () => copiarTexto(index);
     contendorBotonCopiar.appendChild(boton);
 }
@@ -127,7 +127,7 @@ function desencriptar() {
     const textoDesencriptado = procesarTexto(textoDeUsuario, false);
     console.log({ textoDesencriptado });
 
-    //asignarTextoElemento("#userValue", textoDesencriptado);
+    asignarTextoElemento("#userValue", textoDesencriptado);
 }
 
 function actualizarLista() {
