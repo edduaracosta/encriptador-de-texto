@@ -1,68 +1,73 @@
+document.addEventListener('DOMContentLoaded', () => {
+    actualizarVisibilidadSecciones();
+});
 
-
-let listaTextoEncriptado = [];
-showContent();
-
-function showContent() {
-    const notResults = document.getElementById('no_results');
+function actualizarVisibilidadSecciones() {
+    const notResults = document.getElementById('message');
     const history = document.getElementById('history');
+
     if (listaTextoEncriptado.length === 0) {
-
-        notResults.style.display = 'block';
-        history.style.display = 'none';
+        mostrarElemento(notResults);
+        ocultarElemento(history);
     } else {
-
-        notResults.style.display = 'none';
-        history.style.display = 'block';
+        ocultarElemento(notResults);
+        mostrarElemento(history);
     }
-
 }
-function asignarTextoElemento(elemento, texto) {
-    let elementoHTML = document.querySelector(elemento);
-    elementoHTML.innerHTML = texto;
-    return;
+
+function mostrarElemento(elemento) {
+    elemento.style.display = 'block';
+}
+
+function ocultarElemento(elemento) {
+    elemento.style.display = 'none';
+}
+function asignarTextoElemento(selector, texto) {
+    const elementoHTML = document.querySelector(selector);
+    console.log({ selector, texto, elementoHTML });
+
+    if (elementoHTML) {
+        elementoHTML.value = texto;
+    }
+}
+
+function crearItemLista(elemento, index) {
+    const item = document.createElement('li');
+    item.classList.add('list-item');
+    item.textContent = elemento;
+    item.onclick = () => crearBotonCopiar(index);
+    return item;
+}
+
+function crearBotonCopiar(index) {
+    const contendorBotonCopiar = document.getElementById('contendorBotonCopiar');
+    const boton = document.createElement('button');
+
+    contendorBotonCopiar.innerHTML = '';
+    boton.textContent = `Copiar índice ${index}`;
+    boton.onclick = () => copiarTexto(index);
+    contendorBotonCopiar.appendChild(boton);
 }
 
 function getTextInput() {
-    let textoDeUsuario = document.getElementById("userValue").value;
+    const textoDeUsuario = document.getElementById("userValue").value;
     if (!textoDeUsuario) {
         alert("Ingrese un texto");
+        return null;
     }
     return textoDeUsuario;
-};
+}
 
-
-
-function encriptar() {
-    let textoDeUsuario = validar(getTextInput());
-    if (!textoDeUsuario) {
-        return;
+function validarTexto(texto) {
+    const patronInvalido = /\p{Lu}|\p{N}|\p{S}|\p{P}/gu;
+    if (patronInvalido.test(texto)) {
+        alert("Recuerda NO usar mayúsculas, números ni símbolos");
+        return false;
     }
-    let textoEncriptado = procesar(textoDeUsuario);
-    console.log({ textoEncriptado });
-    //listaTextoEncriptado.push({ text: textoDeUsuario, encripted: textoEncriptado });
-    listaTextoEncriptado.push(textoEncriptado);
-    showContent()
+    return true;
 }
 
-function desencriptar() {
-    let textoDeUsuario = getTextInput();
-    if (!textoDeUsuario) {
-        return;
-    }
-    let textoDesencriptado = procesar(textoDeUsuario, false);
-    console.log(textoDesencriptado);
-    showContent()
-
-}
-
-function copiar(index) {
-    let texto = listaTextoEncriptado[index];
-    asignarTextoElemento("#userValue", texto.encripted);
-}
-
-function procesar(text, toEncriptar = true) {
-
+function procesarTexto(texto, encriptar = true) {
     const relleno = {
         "a": "i",
         "e": "nter",
@@ -74,45 +79,74 @@ function procesar(text, toEncriptar = true) {
         "í": "mes",
         "ó": "ber",
         "ú": "fati"
+    };
+
+    let regex = new RegExp(Object.keys(relleno).join('|'), 'gi');
+    if (!encriptar) {
+        return desencriptarTexto(texto, regex, relleno);
     }
 
-    let regex = new RegExp(Object.keys(relleno).join('|'), 'gi');;
-    let procesado = "";
-    if (!toEncriptar) {
-        //search value in listarTextoEncriptado
-        let index = listaTextoEncriptado.findIndex(function (elemento) {
-            return elemento === text;
-
-        });
-        if (index === -1) {
-            alert("No se encontró el texto encriptado");
-            return;
-        }
-
-        const vocales = Object.keys(relleno).join('');
-        regex = (new RegExp(`([${vocales}])(${Object.values(relleno).join('|')})`, 'gi'));
-
-        return text.replace(regex, (encriptado, vocal) => {
-            // Recuperar solo la vocal inicial
-            console.log({ encriptado, vocal });
-            return vocal[0];
-        });
-
-    }
-
-    "/[aeiouáéíóú]/g"
-    return text.replace(regex, (vocal) => {
-        console.log(vocal);
+    return texto.replace(regex, (vocal) => {
         return vocal + relleno[vocal.toLowerCase()];
     });
-
 }
-function validar(texto) {
-    if (texto.match(/\p{Lu}|\p{N}|\p{S}|\p{P}/gu)) {
-        alert("Recuerda NO usar mayusculas, números ni simbolos");
-        return false;
+
+function desencriptarTexto(texto, regex, relleno) {
+    const index = listaTextoEncriptado.indexOf(texto);
+    if (index === -1) {
+        alert("No se encontró el texto encriptado");
+        return texto;
     }
-    console.log(texto);
-    return texto;
 
+    const vocales = Object.keys(relleno).join('');
+    const regexDesencriptado = new RegExp(`([${vocales}])(${Object.values(relleno).join('|')})`, 'gi');
+
+    return texto.replace(regexDesencriptado, (encriptado, vocal) => vocal[0]);
 }
+let listaTextoEncriptado = [];
+
+function encriptar() {
+    const textoDeUsuario = getTextInput();
+    if (!textoDeUsuario || !validarTexto(textoDeUsuario)) {
+        return;
+    }
+
+    const textoEncriptado = procesarTexto(textoDeUsuario);
+    listaTextoEncriptado.push(textoEncriptado);
+    actualizarLista();
+}
+
+function desencriptar() {
+    const textoDeUsuario = getTextInput();
+    console.log({ textoDeUsuario });
+
+    if (!textoDeUsuario) {
+        return;
+    }
+
+    const textoDesencriptado = procesarTexto(textoDeUsuario, false);
+    console.log({ textoDesencriptado });
+
+    //asignarTextoElemento("#userValue", textoDesencriptado);
+}
+
+function actualizarLista() {
+    actualizarVisibilidadSecciones();
+    const listaContenedor = document.getElementById('listaContenedor');
+    listaContenedor.innerHTML = '';
+
+    listaTextoEncriptado.forEach((elemento, index) => {
+        const item = crearItemLista(elemento, index);
+        listaContenedor.appendChild(item);
+    });
+}
+
+function copiarTexto(index) {
+    const textoEncriptado = listaTextoEncriptado[index];
+
+    console.log({ index, textoEncriptado });
+
+    asignarTextoElemento("#userValue", textoEncriptado);
+}
+
+
