@@ -1,0 +1,138 @@
+body {
+  background-color: #f3f5fc;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Arial", sans-serif;
+}
+
+header {
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  padding: 50px;
+}
+
+.content__actions {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0 30px 70px;
+  padding: 30px;
+}
+
+.content__input > textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+  color: #0b3870;
+  background-color: transparent;
+  resize: none;
+}
+
+.content__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+}
+.content__buttons {
+  margin-top: auto;
+}
+.content__buttons-text {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #495057;
+  align-self: flex-start;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.content__button {
+  padding: 15px 0;
+  border: 1px solid #0b3870;
+  background-color: #d9dee8;
+  width: 100%;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.content__button--primary {
+  background-color: #0b3870;
+  color: white;
+}
+
+.content__button:hover {
+  opacity: 0.8;
+}
+
+#copiar {
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+#userValue::placeholder {
+  color: #0b3870;
+  font-family: "Arial", sans-serif;
+}
+
+.content__results {
+  width: 30%;
+  background-color: #fff;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.content__results-image {
+  max-width: 70%;
+  height: auto;
+}
+
+.content__no-results {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.content__history {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content__history-text {
+  flex-grow: 1;
+  overflow-y: auto;
+  height: 85%;
+}
+
+.content__button {
+  align-self: flex-end;
+}

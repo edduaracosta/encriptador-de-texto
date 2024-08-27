@@ -1,39 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encriptador de texto</title>
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
     <header>
-        <img src="./assets/Logo.png" alt="Alura logo" srcset="">
+      <img src="./assets/images/Logo.png" alt="Alura logo" />
     </header>
     <main>
-        <section class="content">
-            <h1 class="content__title">
-                Ingrese el texto aqui
-            </h1>
-            <section class="content__results">
-                <div class="content__results__content">
-                    <textarea name="" id="" rows="10"></textarea>
-                    <img class="content__results__image" src="./assets/Muñeco.png" alt="A person with a magnifier seeking for">
-                    <h2 class="content__results__subtitle">Ningún mensaje fue encontrado</h2>
-                    <h3 class="content_results___text">Ingresa el texto que desees encriptar o desencriptar.</h3>
-                </div>
-                <button class="results__button" id="encriptar" style="display: none;">Copiar</button>
-            </section>
-            <div class="content__input">
-                <input type="text" name="text-user" id="userValue">
-            </div>
-            <div class="content__buttons">
-                <h2 class="content__buttons__text">Solo letras minúsculas y sin acentos</h2>
-                <button onclick="encriptar();" class="content__button" id="encriptar">Encriptar</button>
-                <button onclick="desencriptar();" class="content__button" id="desencriptar">Desencriptar</button>
-            </div>
-        </section>
+      <section class="content__actions">
+        <div class="content__input">
+          <textarea
+            type="text"
+            name="text-user"
+            id="userValue"
+            placeholder="Ingrese el texto aquí"
+          ></textarea>
+        </div>
+        <div class="content__buttons">
+          <span class="content__buttons-text"
+            >Solo letras minúsculas y sin acentos</span
+          >
+          <div class="button-container">
+            <button
+              onclick="encriptar();"
+              class="content__button content__button--primary"
+              id="encriptar"
+            >
+              Encriptar
+            </button>
+            <button
+              onclick="desencriptar();"
+              class="content__button"
+              id="desencriptar"
+            >
+              Desencriptar
+            </button>
+          </div>
+        </div>
+      </section>
+      <article class="content__results">
+        <!-- Contenedor para mostrar mensaje de 0 conversaciones -->
+        <div class="content__no-results" id="no_results">
+          <img
+            class="content__results-image"
+            src="./assets/images/Muñeco.png"
+            alt="A person with a magnifier seeking for"
+          />
+          <div>
+            <h2 class="content__results-subtitle">
+              Ningún mensaje fue encontrado
+            </h2>
+            <span class="content__results-text"
+              >Ingresa el texto que desees encriptar o desencriptar.</span
+            >
+          </div>
+        </div>
+        <!-- Contenedor para mostrar el historial de conversaciones -->
+        <div class="content__history" id="history">
+          <!-- Mostrar si existen datos -->
+          <div class="content__history-text">
+            <ul>
+              <li>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Cupiditate sequi tenetur nemo beatae facere fugiat architecto
+                porro quas, ad perferendis qui voluptatibus aut consequuntur
+                quam asperiores ut dolorem reiciendis consequatur.
+              </li>
+            </ul>
+          </div>
+
+          <button onclick="copiar();" class="content__button" id="copiar">
+            Copiar
+          </button>
+        </div>
+      </article>
     </main>
-    <footer></footer>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
